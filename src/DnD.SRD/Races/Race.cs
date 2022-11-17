@@ -11,6 +11,7 @@ public abstract class Race
     {
         Ability = ability;
         Speed = speed;
+        Resistances = Array.Empty<DamageType>();
     }
 
     public virtual IReadOnlyCollection<DamageType> Resistances { get; }

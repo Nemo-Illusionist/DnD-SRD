@@ -2,11 +2,11 @@ using DnD.SRD.Abilities;
 using DnD.SRD.Classes;
 using DnD.SRD.Races;
 
-namespace DnD.SRD;
+namespace DnD.SRD.Characters;
 
 public sealed class Character
 {
-    public int FullHP { get; private set; }
+    public int FullHitPoints { get; private set; }
     public Ability CharacterAbility { get; }
     public Race Race { get; }
     public BaseClass Class { get; }
@@ -20,5 +20,6 @@ public sealed class Character
         CharacterAbility = characterAbility;
         Race = race;
         Class = @class;
+        FullHitPoints = Ability.Constitution.Modifier; // + Class.HitPoints
     }
 }
