@@ -6,7 +6,7 @@ namespace DnD.SRD.Characters;
 
 public sealed class Character
 {
-    public int FullHitPoints { get; private set; }
+    public HitPoints HitPoints { get; private set; }
     public Ability CharacterAbility { get; }
     public Race Race { get; }
     public BaseClass Class { get; }
@@ -20,6 +20,6 @@ public sealed class Character
         CharacterAbility = characterAbility;
         Race = race;
         Class = @class;
-        FullHitPoints = Ability.Constitution.Modifier; // + Class.HitPoints
+        HitPoints = new HitPoints(Ability, Class);
     }
 }
