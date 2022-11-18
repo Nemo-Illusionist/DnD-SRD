@@ -5,9 +5,12 @@ public sealed record Constitution : AbilityPoint
     internal Constitution(
         int score = 0,
         bool isSavingThrows = false)
-        : base(score, isSavingThrows)
+        : base(score, AbilityType.Strength, isSavingThrows)
     {
     }
+
+    protected override SkillMode GetSkillModeByType(SkillType type)
+        => throw new ArgumentOutOfRangeException(nameof(type), type, null);
 
     public static Constitution operator +(Constitution point1, Constitution point2)
     {

@@ -6,18 +6,32 @@ public sealed record Charisma : AbilityPoint
     public SkillMode Intimidation { get; }
     public SkillMode Performance { get; }
     public SkillMode Persuasion { get; }
+    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
+
+    private static readonly SkillType[] SkillTypesArray =
+        { SkillType.Deception, SkillType.Intimidation, SkillType.Performance, SkillType.Persuasion };
 
     internal Charisma(
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, isSavingThrows)
+        : base(score, AbilityType.Charisma, isSavingThrows)
     {
         Deception = TryGetSkillMode(SkillType.Deception, skillModes);
         Intimidation = TryGetSkillMode(SkillType.Intimidation, skillModes);
         Performance = TryGetSkillMode(SkillType.Performance, skillModes);
         Persuasion = TryGetSkillMode(SkillType.Persuasion, skillModes);
     }
+
+    protected override SkillMode GetSkillModeByType(SkillType type)
+        => type switch
+        {
+            SkillType.Deception => Deception,
+            SkillType.Intimidation => Intimidation,
+            SkillType.Performance => Performance,
+            SkillType.Persuasion => Persuasion,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
 
     public static Charisma operator +(Charisma point1, Charisma point2)
     {

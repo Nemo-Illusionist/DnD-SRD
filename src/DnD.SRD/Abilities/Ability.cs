@@ -32,6 +32,50 @@ public sealed record Ability
         Charisma = charisma;
     }
 
+    public AbilityPoint GetPoint(AbilityType type)
+        => type switch
+        {
+            AbilityType.Strength => Strength,
+            AbilityType.Dexterity => Dexterity,
+            AbilityType.Constitution => Constitution,
+            AbilityType.Intelligence => Intelligence,
+            AbilityType.Wisdom => Wisdom,
+            AbilityType.Charisma => Charisma,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
+
+    public AbilityPoint GetPointBySkill(SkillType type)
+    {
+        switch (type)
+        {
+            case SkillType.Athletics:
+                return Strength;
+            case SkillType.Acrobatics:
+            case SkillType.SleightOfHand:
+            case SkillType.Stealth:
+                return Dexterity;
+            case SkillType.Arcana:
+            case SkillType.History:
+            case SkillType.Investigation:
+            case SkillType.Nature:
+            case SkillType.Religion:
+                return Intelligence;
+            case SkillType.AnimalHandling:
+            case SkillType.Insight:
+            case SkillType.Medicine:
+            case SkillType.Perception:
+            case SkillType.Survival:
+                return Wisdom;
+            case SkillType.Deception:
+            case SkillType.Intimidation:
+            case SkillType.Performance:
+            case SkillType.Persuasion:
+                return Charisma;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
+    }
+
     public static Ability operator +(Ability ability1, Ability ability2)
     {
         ArgumentNullException.ThrowIfNull(ability1);

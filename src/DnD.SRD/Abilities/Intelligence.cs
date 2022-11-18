@@ -7,12 +7,16 @@ public sealed record Intelligence : AbilityPoint
     public SkillMode Investigation { get; }
     public SkillMode Nature { get; }
     public SkillMode Religion { get; }
+    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
+
+    private static readonly SkillType[] SkillTypesArray =
+        { SkillType.Arcana, SkillType.History, SkillType.Investigation, SkillType.Nature, SkillType.Religion };
 
     internal Intelligence(
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, isSavingThrows)
+        : base(score, AbilityType.Strength, isSavingThrows)
     {
         Arcana = TryGetSkillMode(SkillType.Arcana, skillModes);
         History = TryGetSkillMode(SkillType.History, skillModes);
@@ -20,6 +24,17 @@ public sealed record Intelligence : AbilityPoint
         Nature = TryGetSkillMode(SkillType.Nature, skillModes);
         Religion = TryGetSkillMode(SkillType.Religion, skillModes);
     }
+
+    protected override SkillMode GetSkillModeByType(SkillType type)
+        => type switch
+        {
+            SkillType.Arcana => Arcana,
+            SkillType.History => History,
+            SkillType.Investigation => Investigation,
+            SkillType.Nature => Nature,
+            SkillType.Religion => Religion,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
 
     public static Intelligence operator +(Intelligence point1, Intelligence point2)
     {

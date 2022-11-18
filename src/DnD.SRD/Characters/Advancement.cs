@@ -1,12 +1,12 @@
 namespace DnD.SRD.Characters;
 
-public sealed record CharacterAdvancement
+public sealed record Advancement
 {
     public int Experience { get; private init; }
     public int Level => CalculateLevel();
     public int ProficiencyBonus => (int)Math.Ceiling(Level / 4.0) + 1;
 
-    public CharacterAdvancement(int experience)
+    public Advancement(int experience)
     {
         if (experience < 0)
         {
@@ -16,10 +16,10 @@ public sealed record CharacterAdvancement
         Experience = experience;
     }
 
-    public static CharacterAdvancement operator +(CharacterAdvancement point1, CharacterAdvancement point2)
+    public static Advancement operator +(Advancement point1, Advancement point2)
     {
         var experience = point1.Experience + point2.Experience;
-        return new CharacterAdvancement(experience);
+        return new Advancement(experience);
     }
 
     private int CalculateLevel() => Experience switch

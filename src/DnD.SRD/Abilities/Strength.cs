@@ -3,15 +3,25 @@ namespace DnD.SRD.Abilities;
 public sealed record Strength : AbilityPoint
 {
     public SkillMode Athletics { get; }
+    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
+
+    private static readonly SkillType[] SkillTypesArray = { SkillType.Athletics };
 
     internal Strength(
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, isSavingThrows)
+        : base(score, AbilityType.Strength, isSavingThrows)
     {
         Athletics = TryGetSkillMode(SkillType.Athletics, skillModes);
     }
+
+    protected override SkillMode GetSkillModeByType(SkillType type)
+        => type switch
+        {
+            SkillType.Athletics => Athletics,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
 
     public static Strength operator +(Strength point1, Strength point2)
     {

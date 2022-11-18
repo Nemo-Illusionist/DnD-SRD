@@ -7,12 +7,16 @@ public sealed record Wisdom : AbilityPoint
     public SkillMode Medicine { get; }
     public SkillMode Perception { get; }
     public SkillMode Survival { get; }
+    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
+
+    private static readonly SkillType[] SkillTypesArray =
+        { SkillType.AnimalHandling, SkillType.Insight, SkillType.Medicine, SkillType.Perception, SkillType.Survival };
 
     internal Wisdom(
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, isSavingThrows)
+        : base(score, AbilityType.Wisdom, isSavingThrows)
     {
         AnimalHandling = TryGetSkillMode(SkillType.AnimalHandling, skillModes);
         Insight = TryGetSkillMode(SkillType.Insight, skillModes);
@@ -20,6 +24,17 @@ public sealed record Wisdom : AbilityPoint
         Perception = TryGetSkillMode(SkillType.Perception, skillModes);
         Survival = TryGetSkillMode(SkillType.Survival, skillModes);
     }
+
+    protected override SkillMode GetSkillModeByType(SkillType type)
+        => type switch
+        {
+            SkillType.AnimalHandling => AnimalHandling,
+            SkillType.Insight => Insight,
+            SkillType.Medicine => Medicine,
+            SkillType.Perception => Perception,
+            SkillType.Survival => Survival,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
 
     public static Wisdom operator +(Wisdom point1, Wisdom point2)
     {
