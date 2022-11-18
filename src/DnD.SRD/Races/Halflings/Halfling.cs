@@ -6,12 +6,12 @@ public abstract class Halfling : Race
 {
     protected Halfling(Ability ability)
         : base(ability + new Ability(
-                strength: AbilityPoint.Empty,
-                dexterity: new AbilityPoint(2),
-                constitution: AbilityPoint.Empty,
-                intelligence: AbilityPoint.Empty,
-                wisdom: AbilityPoint.Empty,
-                charisma: AbilityPoint.Empty),
+                strength: new Strength(),
+                dexterity: new Dexterity(2),
+                constitution: new Constitution(),
+                intelligence: new Intelligence(),
+                wisdom: new Wisdom(),
+                charisma: new Charisma()),
             25)
     {
     }

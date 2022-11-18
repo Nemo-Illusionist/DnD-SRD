@@ -6,13 +6,12 @@ public sealed class HalfOrc : Race
 {
     public HalfOrc()
         : base(new Ability(
-                strength: new AbilityPoint(2),
-                dexterity: AbilityPoint.Empty,
-                constitution: new AbilityPoint(1),
-                intelligence: AbilityPoint.Empty,
-                wisdom: AbilityPoint.Empty,
-                charisma: AbilityPoint.Empty),
-            30)
+                strength: new Strength(2),
+                dexterity: new Dexterity(),
+                constitution: new Constitution(1),
+                intelligence: new Intelligence(),
+                wisdom: new Wisdom(),
+                charisma: new Charisma()))
     {
     }
 

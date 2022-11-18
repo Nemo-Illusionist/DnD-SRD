@@ -6,12 +6,12 @@ public sealed class HillDwarf : Dwarf
 {
     public HillDwarf()
         : base(new Ability(
-            strength: AbilityPoint.Empty,
-            dexterity: AbilityPoint.Empty,
-            constitution: AbilityPoint.Empty,
-            intelligence: AbilityPoint.Empty,
-            wisdom: new AbilityPoint(1),
-            charisma: AbilityPoint.Empty))
+            strength: new Strength(),
+            dexterity: new Dexterity(),
+            constitution: new Constitution(),
+            intelligence: new Intelligence(),
+            wisdom: new Wisdom(1),
+            charisma: new Charisma()))
     {
     }
 

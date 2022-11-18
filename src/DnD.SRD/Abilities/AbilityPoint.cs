@@ -1,29 +1,46 @@
 namespace DnD.SRD.Abilities;
 
-public sealed record AbilityPoint
+public abstract record AbilityPoint
 {
+    protected const int MaxAbilityScore = 30;
     public int Score { get; }
+    public AbilityType Type { get; }
+    public bool IsSavingThrows { get; }
     public int Modifier => Score / 2 - 5;
 
-    public AbilityPoint(int score)
+    protected AbilityPoint(int score, AbilityType type, bool isSavingThrows)
     {
-        // todo: Value must be between 1 and 30
+        if (score is < 0 or > MaxAbilityScore)
+        {
+            throw new ArgumentOutOfRangeException(nameof(score));
+        }
 
         Score = score;
+        Type = type;
+        IsSavingThrows = isSavingThrows;
     }
 
-    private AbilityPoint()
-    {
-        Score = 0;
-    }
+    protected static SkillMode TryGetSkillMode(SkillType type, IReadOnlyDictionary<SkillType, SkillMode>? skillModes)
+        => skillModes?.ContainsKey(type) ?? false
+            ? skillModes[type]
+            : SkillMode.None;
 
-    public static AbilityPoint Empty { get; } = new();
-
-    public static AbilityPoint operator +(AbilityPoint point1, AbilityPoint point2)
+    protected static SkillMode MaxSkillMode(SkillMode mode1, SkillMode mode2)
     {
-        var score = point1.Score + point2.Score;
-        return score > 30
-            ? new AbilityPoint(30)
-            : new AbilityPoint(score);
+        var mode = SkillMode.None;
+        if (mode1 == SkillMode.Two || mode2 == SkillMode.Two)
+        {
+            mode = SkillMode.Two;
+        }
+        else if (mode1 == SkillMode.One || mode2 == SkillMode.One)
+        {
+            mode = SkillMode.One;
+        }
+        else if (mode1 == SkillMode.Half || mode2 == SkillMode.Half)
+        {
+            mode = SkillMode.Half;
+        }
+
+        return mode;
     }
 }

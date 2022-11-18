@@ -6,12 +6,12 @@ public abstract class Gnome : Race
 {
     protected Gnome(Ability ability)
         : base(ability + new Ability(
-                strength: AbilityPoint.Empty,
-                dexterity: AbilityPoint.Empty,
-                constitution: AbilityPoint.Empty,
-                intelligence: new AbilityPoint(2),
-                wisdom: AbilityPoint.Empty,
-                charisma: AbilityPoint.Empty),
+                strength: new Strength(),
+                dexterity: new Dexterity(),
+                constitution: new Constitution(),
+                intelligence: new Intelligence(2),
+                wisdom: new Wisdom(),
+                charisma: new Charisma()),
             25)
     {
     }

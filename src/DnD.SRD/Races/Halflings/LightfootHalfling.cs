@@ -6,12 +6,12 @@ public sealed class LightfootHalfling : Halfling
 {
     public LightfootHalfling()
         : base(new Ability(
-            strength: AbilityPoint.Empty,
-            dexterity: AbilityPoint.Empty,
-            constitution: AbilityPoint.Empty,
-            intelligence: AbilityPoint.Empty,
-            wisdom: AbilityPoint.Empty,
-            charisma: new AbilityPoint(1)))
+            strength: new Strength(),
+            dexterity: new Dexterity(),
+            constitution: new Constitution(),
+            intelligence: new Intelligence(),
+            wisdom: new Wisdom(),
+            charisma: new Charisma(1)))
     {
     }
 

@@ -6,13 +6,12 @@ public sealed class Tiefling : Race
 {
     public Tiefling()
         : base(new Ability(
-                strength: AbilityPoint.Empty,
-                dexterity: AbilityPoint.Empty,
-                constitution: AbilityPoint.Empty,
-                intelligence: new AbilityPoint(1),
-                wisdom: AbilityPoint.Empty,
-                charisma: new AbilityPoint(2)),
-            30)
+                strength: new Strength(),
+                dexterity: new Dexterity(),
+                constitution: new Constitution(),
+                intelligence: new Intelligence(1),
+                wisdom: new Wisdom(),
+                charisma: new Charisma(2)))
     {
     }
 

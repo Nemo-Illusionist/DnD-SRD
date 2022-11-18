@@ -6,12 +6,12 @@ public sealed class RockGnome : Gnome
 {
     public RockGnome()
         : base(new Ability(
-            strength: AbilityPoint.Empty,
-            dexterity: AbilityPoint.Empty,
-            constitution: new AbilityPoint(1),
-            intelligence: AbilityPoint.Empty,
-            wisdom: AbilityPoint.Empty,
-            charisma: AbilityPoint.Empty))
+            strength: new Strength(),
+            dexterity: new Dexterity(),
+            constitution: new Constitution(1),
+            intelligence: new Intelligence(),
+            wisdom: new Wisdom(),
+            charisma: new Charisma()))
     {
     }
 

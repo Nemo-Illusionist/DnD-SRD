@@ -6,18 +6,17 @@ public sealed class HalfElf : Race
 {
     public HalfElf(AbilityType type1, AbilityType type2)
         : base(new Ability(
-                strength: BuildAbilityPoint1(type1, type2, AbilityType.Strength),
-                dexterity: BuildAbilityPoint1(type1, type2, AbilityType.Dexterity),
-                constitution: BuildAbilityPoint1(type1, type2, AbilityType.Constitution),
-                intelligence: BuildAbilityPoint1(type1, type2, AbilityType.Intelligence),
-                wisdom: BuildAbilityPoint1(type1, type2, AbilityType.Wisdom),
-                charisma: new AbilityPoint(2)),
-            30)
+            strength: new Strength(IsBuild1(type1, type2, AbilityType.Strength)),
+            dexterity: new Dexterity(IsBuild1(type1, type2, AbilityType.Dexterity)),
+            constitution: new Constitution(IsBuild1(type1, type2, AbilityType.Constitution)),
+            intelligence: new Intelligence(IsBuild1(type1, type2, AbilityType.Intelligence)),
+            wisdom: new Wisdom(IsBuild1(type1, type2, AbilityType.Wisdom)),
+            charisma: new Charisma(2)))
     {
     }
 
-    private static AbilityPoint BuildAbilityPoint1(AbilityType type1, AbilityType type2, AbilityType e) =>
-        type1 == e || type2 == e ? new AbilityPoint(1) : AbilityPoint.Empty;
+    private static int IsBuild1(AbilityType type1, AbilityType type2, AbilityType e)
+        => type1 == e || type2 == e ? 1 : 0;
 
     // - Darkvision: Thanks to your elf blood, you have superior vision in dark and dim conditions.
     // You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light.

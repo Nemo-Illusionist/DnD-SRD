@@ -2,22 +2,27 @@
 
 public sealed record Ability
 {
-    public AbilityPoint Strength { get; }
-    public AbilityPoint Dexterity { get; }
-    public AbilityPoint Constitution { get; }
-    public AbilityPoint Intelligence { get; }
-    public AbilityPoint Wisdom { get; }
-    public AbilityPoint Charisma { get; }
+    public Strength Strength { get; }
+    public Dexterity Dexterity { get; }
+    public Constitution Constitution { get; }
+    public Intelligence Intelligence { get; }
+    public Wisdom Wisdom { get; }
+    public Charisma Charisma { get; }
 
     public Ability(
-        AbilityPoint strength,
-        AbilityPoint dexterity,
-        AbilityPoint constitution,
-        AbilityPoint intelligence,
-        AbilityPoint wisdom,
-        AbilityPoint charisma)
+        Strength strength,
+        Dexterity dexterity,
+        Constitution constitution,
+        Intelligence intelligence,
+        Wisdom wisdom,
+        Charisma charisma)
     {
-        // todo: not null
+        ArgumentNullException.ThrowIfNull(strength);
+        ArgumentNullException.ThrowIfNull(dexterity);
+        ArgumentNullException.ThrowIfNull(constitution);
+        ArgumentNullException.ThrowIfNull(intelligence);
+        ArgumentNullException.ThrowIfNull(wisdom);
+        ArgumentNullException.ThrowIfNull(charisma);
 
         Strength = strength;
         Dexterity = dexterity;
@@ -29,6 +34,9 @@ public sealed record Ability
 
     public static Ability operator +(Ability ability1, Ability ability2)
     {
+        ArgumentNullException.ThrowIfNull(ability1);
+        ArgumentNullException.ThrowIfNull(ability2);
+
         return new Ability(
             ability1.Strength + ability2.Strength,
             ability1.Dexterity + ability2.Dexterity,

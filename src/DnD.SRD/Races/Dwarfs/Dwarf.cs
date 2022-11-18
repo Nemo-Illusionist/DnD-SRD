@@ -6,12 +6,12 @@ public abstract class Dwarf : Race
 {
     protected Dwarf(Ability ability)
         : base(ability + new Ability(
-                strength: AbilityPoint.Empty,
-                dexterity: AbilityPoint.Empty,
-                constitution: new AbilityPoint(2),
-                intelligence: AbilityPoint.Empty,
-                wisdom: AbilityPoint.Empty,
-                charisma: AbilityPoint.Empty),
+                strength: new Strength(),
+                dexterity: new Dexterity(),
+                constitution: new Constitution(2),
+                intelligence: new Intelligence(),
+                wisdom: new Wisdom(),
+                charisma: new Charisma()),
             25)
     {
     }

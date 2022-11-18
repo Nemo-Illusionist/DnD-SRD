@@ -7,7 +7,7 @@ public abstract class Race
     public Ability Ability { get; }
     public int Speed { get; }
 
-    protected Race(Ability ability, int speed)
+    protected Race(Ability ability, int speed = 30)
     {
         Ability = ability;
         Speed = speed;

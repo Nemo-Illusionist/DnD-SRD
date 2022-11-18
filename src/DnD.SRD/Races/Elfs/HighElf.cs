@@ -6,12 +6,12 @@ public sealed class HighElf : Elf
 {
     public HighElf()
         : base(new Ability(
-            strength: AbilityPoint.Empty,
-            dexterity: AbilityPoint.Empty,
-            constitution: AbilityPoint.Empty,
-            intelligence: new AbilityPoint(1),
-            wisdom: AbilityPoint.Empty,
-            charisma: AbilityPoint.Empty))
+            strength: new Strength(),
+            dexterity: new Dexterity(),
+            constitution: new Constitution(),
+            intelligence: new Intelligence(1),
+            wisdom: new Wisdom(),
+            charisma: new Charisma()))
     {
     }
     // - Elf Weapon Training: You have proficiency with the longsword, shortsword, shortbow, and longbow.
