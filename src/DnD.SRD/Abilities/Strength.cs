@@ -4,11 +4,11 @@ public sealed record Strength : AbilityPoint
 {
     public SkillMode Athletics { get; }
 
-    public Strength(
+    internal Strength(
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, AbilityType.Strength, isSavingThrows)
+        : base(score, isSavingThrows)
     {
         Athletics = TryGetSkillMode(SkillType.Athletics, skillModes);
     }

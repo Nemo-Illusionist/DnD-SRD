@@ -7,11 +7,11 @@ public sealed record Charisma : AbilityPoint
     public SkillMode Performance { get; }
     public SkillMode Persuasion { get; }
 
-    public Charisma(
+    internal Charisma(
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, AbilityType.Charisma, isSavingThrows)
+        : base(score, isSavingThrows)
     {
         Deception = TryGetSkillMode(SkillType.Deception, skillModes);
         Intimidation = TryGetSkillMode(SkillType.Intimidation, skillModes);

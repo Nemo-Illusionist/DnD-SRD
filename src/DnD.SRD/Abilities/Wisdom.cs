@@ -8,11 +8,11 @@ public sealed record Wisdom : AbilityPoint
     public SkillMode Perception { get; }
     public SkillMode Survival { get; }
 
-    public Wisdom(
+    internal Wisdom(
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, AbilityType.Wisdom, isSavingThrows)
+        : base(score, isSavingThrows)
     {
         AnimalHandling = TryGetSkillMode(SkillType.AnimalHandling, skillModes);
         Insight = TryGetSkillMode(SkillType.Insight, skillModes);

@@ -8,11 +8,11 @@ public sealed record Intelligence : AbilityPoint
     public SkillMode Nature { get; }
     public SkillMode Religion { get; }
 
-    public Intelligence(
+    internal Intelligence(
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, AbilityType.Strength, isSavingThrows)
+        : base(score, isSavingThrows)
     {
         Arcana = TryGetSkillMode(SkillType.Arcana, skillModes);
         History = TryGetSkillMode(SkillType.History, skillModes);

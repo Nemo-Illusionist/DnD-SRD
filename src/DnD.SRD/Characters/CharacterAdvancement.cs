@@ -8,9 +8,13 @@ public sealed record CharacterAdvancement
 
     public CharacterAdvancement(int experience)
     {
+        if (experience < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(experience));
+        }
+
         Experience = experience;
     }
-
 
     public static CharacterAdvancement operator +(CharacterAdvancement point1, CharacterAdvancement point2)
     {

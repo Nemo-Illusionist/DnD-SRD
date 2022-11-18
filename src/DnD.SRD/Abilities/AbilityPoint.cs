@@ -4,11 +4,10 @@ public abstract record AbilityPoint
 {
     protected const int MaxAbilityScore = 30;
     public int Score { get; }
-    public AbilityType Type { get; }
     public bool IsSavingThrows { get; }
     public int Modifier => Score / 2 - 5;
 
-    protected AbilityPoint(int score, AbilityType type, bool isSavingThrows)
+    protected AbilityPoint(int score, bool isSavingThrows)
     {
         if (score is < 0 or > MaxAbilityScore)
         {
@@ -16,7 +15,6 @@ public abstract record AbilityPoint
         }
 
         Score = score;
-        Type = type;
         IsSavingThrows = isSavingThrows;
     }
 

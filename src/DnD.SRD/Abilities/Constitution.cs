@@ -2,10 +2,10 @@ namespace DnD.SRD.Abilities;
 
 public sealed record Constitution : AbilityPoint
 {
-    public Constitution(
+    internal Constitution(
         int score = 0,
         bool isSavingThrows = false)
-        : base(score, AbilityType.Strength, isSavingThrows)
+        : base(score, isSavingThrows)
     {
     }
 

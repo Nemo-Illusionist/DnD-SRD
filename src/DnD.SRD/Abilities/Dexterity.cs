@@ -6,11 +6,11 @@ public sealed record Dexterity : AbilityPoint
     public SkillMode SleightOfHand { get; }
     public SkillMode Stealth { get; }
 
-    public Dexterity(
+    internal Dexterity(
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, AbilityType.Strength, isSavingThrows)
+        : base(score, isSavingThrows)
     {
         Acrobatics = TryGetSkillMode(SkillType.Acrobatics, skillModes);
         SleightOfHand = TryGetSkillMode(SkillType.SleightOfHand, skillModes);
