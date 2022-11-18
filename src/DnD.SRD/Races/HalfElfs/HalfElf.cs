@@ -4,14 +4,32 @@ namespace DnD.SRD.Races.HalfElfs;
 
 public sealed class HalfElf : Race
 {
-    public HalfElf(AbilityType type1, AbilityType type2)
+    public HalfElf(AbilityType ability1, AbilityType ability2, SkillType skill1, SkillType skill2)
+        : this(
+            ability1,
+            ability2,
+            new Dictionary<SkillType, SkillMode> { { skill1, SkillMode.One }, { skill2, SkillMode.One } })
+    {
+    }
+
+    private HalfElf(AbilityType ability1, AbilityType ability2, IReadOnlyDictionary<SkillType, SkillMode> skillModes)
         : base(new Ability(
-            strength: new Strength(IsBuild1(type1, type2, AbilityType.Strength)),
-            dexterity: new Dexterity(IsBuild1(type1, type2, AbilityType.Dexterity)),
-            constitution: new Constitution(IsBuild1(type1, type2, AbilityType.Constitution)),
-            intelligence: new Intelligence(IsBuild1(type1, type2, AbilityType.Intelligence)),
-            wisdom: new Wisdom(IsBuild1(type1, type2, AbilityType.Wisdom)),
-            charisma: new Charisma(2)))
+            strength: new Strength(
+                score: IsBuild1(ability1, ability2, AbilityType.Strength),
+                skillModes: skillModes),
+            dexterity: new Dexterity(
+                score: IsBuild1(ability1, ability2, AbilityType.Dexterity),
+                skillModes: skillModes),
+            constitution: new Constitution(IsBuild1(ability1, ability2, AbilityType.Constitution)),
+            intelligence: new Intelligence(
+                score: IsBuild1(ability1, ability2, AbilityType.Intelligence),
+                skillModes: skillModes),
+            wisdom: new Wisdom(
+                score: IsBuild1(ability1, ability2, AbilityType.Wisdom),
+                skillModes: skillModes),
+            charisma: new Charisma(
+                score: 2,
+                skillModes: skillModes)))
     {
     }
 

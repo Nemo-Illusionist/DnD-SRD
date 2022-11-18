@@ -10,7 +10,8 @@ public abstract class Elf : Race
             dexterity: new Dexterity(2),
             constitution: new Constitution(),
             intelligence: new Intelligence(),
-            wisdom: new Wisdom(),
+            wisdom: new Wisdom(
+                skillModes: new Dictionary<SkillType, SkillMode> { { SkillType.Perception, SkillMode.One } }),
             charisma: new Charisma()))
     {
     }

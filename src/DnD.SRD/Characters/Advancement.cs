@@ -2,7 +2,7 @@ namespace DnD.SRD.Characters;
 
 public sealed record Advancement
 {
-    public int Experience { get; private init; }
+    public int Experience { get; }
     public int Level => CalculateLevel();
     public int ProficiencyBonus => (int)Math.Ceiling(Level / 4.0) + 1;
 
