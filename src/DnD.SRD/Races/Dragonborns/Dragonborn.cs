@@ -13,8 +13,7 @@ public class Dragonborn : Race
             wisdom: new Wisdom(),
             charisma: new Charisma(1)))
     {
-        Ancestry = ancestry;
-        var resistance = Ancestry switch
+        var resistance = ancestry switch
         {
             DraconicAncestry.Black => DamageType.Acid,
             DraconicAncestry.Blue => DamageType.Lightning,
@@ -26,8 +25,9 @@ public class Dragonborn : Race
             DraconicAncestry.Red => DamageType.Fire,
             DraconicAncestry.Silver => DamageType.Cold,
             DraconicAncestry.White => DamageType.Cold,
-            _ => throw new ArgumentOutOfRangeException(nameof(ancestry), $"Not expected direction value: {ancestry}")
+            _ => throw new ArgumentOutOfRangeException(nameof(ancestry), ancestry, null)
         };
+        Ancestry = ancestry;
         Resistances = new[] { resistance };
     }
 
