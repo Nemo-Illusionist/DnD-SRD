@@ -1,3 +1,3 @@
-# D&D Systems Reference Document (SRD)
+# Systems Reference Document (SRD)
 
 https://dnd.wizards.com/resources/systems-reference-document
