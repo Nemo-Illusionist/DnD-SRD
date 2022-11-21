@@ -18,6 +18,9 @@ public sealed record Advancement
 
     public static Advancement operator +(Advancement point1, Advancement point2)
     {
+        ArgumentNullException.ThrowIfNull(point1);
+        ArgumentNullException.ThrowIfNull(point2);
+
         var experience = point1.Experience + point2.Experience;
         return new Advancement(experience);
     }

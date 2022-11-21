@@ -33,7 +33,10 @@ public sealed record Ability
     }
 
     public AbilityPoint GetPoint(AbilityType type)
-        => type switch
+    {
+        ArgumentNullException.ThrowIfNull(type);
+
+        return type switch
         {
             AbilityType.Strength => Strength,
             AbilityType.Dexterity => Dexterity,
@@ -43,6 +46,7 @@ public sealed record Ability
             AbilityType.Charisma => Charisma,
             _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
         };
+    }
 
     public AbilityPoint GetPointBySkill(SkillType type)
     {
