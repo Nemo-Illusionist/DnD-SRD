@@ -16,7 +16,7 @@ public sealed record Intelligence : AbilityPoint
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, AbilityType.Strength, isSavingThrows)
+        : base(score, AbilityPointType.Strength, isSavingThrows)
     {
         Arcana = TryGetSkillMode(SkillType.Arcana, skillModes);
         History = TryGetSkillMode(SkillType.History, skillModes);
@@ -25,7 +25,7 @@ public sealed record Intelligence : AbilityPoint
         Religion = TryGetSkillMode(SkillType.Religion, skillModes);
     }
 
-    protected override SkillMode GetSkillModeByType(SkillType type)
+    internal override SkillMode GetSkillModeByType(SkillType type)
         => type switch
         {
             SkillType.Arcana => Arcana,
@@ -41,7 +41,7 @@ public sealed record Intelligence : AbilityPoint
         ArgumentNullException.ThrowIfNull(point1);
         ArgumentNullException.ThrowIfNull(point2);
 
-        var score = point1.Score + point2.Score;
+        var score = PointScore(point1, point2);
         var isSavingThrows = point1.IsSavingThrows || point2.IsSavingThrows;
         var skillModes = new Dictionary<SkillType, SkillMode>
         {
@@ -51,8 +51,6 @@ public sealed record Intelligence : AbilityPoint
             { SkillType.Nature, MaxSkillMode(point1.Nature, point2.Nature) },
             { SkillType.Religion, MaxSkillMode(point1.Religion, point2.Religion) }
         };
-        return score > MaxAbilityScore
-            ? new Intelligence(30, isSavingThrows, skillModes)
-            : new Intelligence(score, isSavingThrows, skillModes);
+        return new Intelligence(score, isSavingThrows, skillModes);
     }
 }

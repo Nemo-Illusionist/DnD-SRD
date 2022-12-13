@@ -1,6 +1,6 @@
-namespace DnD.SRD;
+namespace DnD.SRD.Dices;
 
-public enum Dice
+public enum DiceType
 {
     D4,
     D6,

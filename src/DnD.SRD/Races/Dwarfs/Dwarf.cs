@@ -5,14 +5,7 @@ namespace DnD.SRD.Races.Dwarfs;
 public abstract class Dwarf : Race
 {
     protected Dwarf(Ability ability)
-        : base(ability + new Ability(
-                strength: new Strength(),
-                dexterity: new Dexterity(),
-                constitution: new Constitution(2),
-                intelligence: new Intelligence(),
-                wisdom: new Wisdom(),
-                charisma: new Charisma()),
-            25)
+        : base(ability + new Ability(constitution: new Constitution(2)), 25)
     {
     }
 

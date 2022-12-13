@@ -5,13 +5,7 @@ namespace DnD.SRD.Races.Gnomes;
 public sealed class RockGnome : Gnome
 {
     public RockGnome()
-        : base(new Ability(
-            strength: new Strength(),
-            dexterity: new Dexterity(),
-            constitution: new Constitution(1),
-            intelligence: new Intelligence(),
-            wisdom: new Wisdom(),
-            charisma: new Charisma()))
+        : base(new Ability(constitution: new Constitution(1)))
     {
     }
 

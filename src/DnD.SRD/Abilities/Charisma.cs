@@ -15,7 +15,7 @@ public sealed record Charisma : AbilityPoint
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, AbilityType.Charisma, isSavingThrows)
+        : base(score, AbilityPointType.Charisma, isSavingThrows)
     {
         Deception = TryGetSkillMode(SkillType.Deception, skillModes);
         Intimidation = TryGetSkillMode(SkillType.Intimidation, skillModes);
@@ -23,7 +23,7 @@ public sealed record Charisma : AbilityPoint
         Persuasion = TryGetSkillMode(SkillType.Persuasion, skillModes);
     }
 
-    protected override SkillMode GetSkillModeByType(SkillType type)
+    internal override SkillMode GetSkillModeByType(SkillType type)
         => type switch
         {
             SkillType.Deception => Deception,
@@ -38,7 +38,7 @@ public sealed record Charisma : AbilityPoint
         ArgumentNullException.ThrowIfNull(point1);
         ArgumentNullException.ThrowIfNull(point2);
 
-        var score = point1.Score + point2.Score;
+        var score = PointScore(point1, point2);
         var isSavingThrows = point1.IsSavingThrows || point2.IsSavingThrows;
         var skillModes = new Dictionary<SkillType, SkillMode>
         {
@@ -47,8 +47,6 @@ public sealed record Charisma : AbilityPoint
             { SkillType.Performance, MaxSkillMode(point1.Performance, point2.Performance) },
             { SkillType.Persuasion, MaxSkillMode(point1.Persuasion, point2.Persuasion) }
         };
-        return score > MaxAbilityScore
-            ? new Charisma(30, isSavingThrows, skillModes)
-            : new Charisma(score, isSavingThrows, skillModes);
+        return new Charisma(score, isSavingThrows, skillModes);
     }
 }

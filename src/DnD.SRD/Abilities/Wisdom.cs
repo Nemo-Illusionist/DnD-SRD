@@ -16,7 +16,7 @@ public sealed record Wisdom : AbilityPoint
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, AbilityType.Wisdom, isSavingThrows)
+        : base(score, AbilityPointType.Wisdom, isSavingThrows)
     {
         AnimalHandling = TryGetSkillMode(SkillType.AnimalHandling, skillModes);
         Insight = TryGetSkillMode(SkillType.Insight, skillModes);
@@ -25,7 +25,7 @@ public sealed record Wisdom : AbilityPoint
         Survival = TryGetSkillMode(SkillType.Survival, skillModes);
     }
 
-    protected override SkillMode GetSkillModeByType(SkillType type)
+    internal override SkillMode GetSkillModeByType(SkillType type)
         => type switch
         {
             SkillType.AnimalHandling => AnimalHandling,
@@ -41,7 +41,7 @@ public sealed record Wisdom : AbilityPoint
         ArgumentNullException.ThrowIfNull(point1);
         ArgumentNullException.ThrowIfNull(point2);
 
-        var score = point1.Score + point2.Score;
+        var score = PointScore(point1, point2);
         var isSavingThrows = point1.IsSavingThrows || point2.IsSavingThrows;
         var skillModes = new Dictionary<SkillType, SkillMode>
         {
@@ -51,8 +51,6 @@ public sealed record Wisdom : AbilityPoint
             { SkillType.Perception, MaxSkillMode(point1.Perception, point2.Perception) },
             { SkillType.Survival, MaxSkillMode(point1.Survival, point2.Survival) }
         };
-        return score > MaxAbilityScore
-            ? new Wisdom(30, isSavingThrows, skillModes)
-            : new Wisdom(score, isSavingThrows, skillModes);
+        return  new Wisdom(score, isSavingThrows, skillModes);
     }
 }

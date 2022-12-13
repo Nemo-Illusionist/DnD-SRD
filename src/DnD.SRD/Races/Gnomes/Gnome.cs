@@ -5,14 +5,7 @@ namespace DnD.SRD.Races.Gnomes;
 public abstract class Gnome : Race
 {
     protected Gnome(Ability ability)
-        : base(ability + new Ability(
-                strength: new Strength(),
-                dexterity: new Dexterity(),
-                constitution: new Constitution(),
-                intelligence: new Intelligence(2),
-                wisdom: new Wisdom(),
-                charisma: new Charisma()),
-            25)
+        : base(ability + new Ability(intelligence: new Intelligence(2)), 25)
     {
     }
 

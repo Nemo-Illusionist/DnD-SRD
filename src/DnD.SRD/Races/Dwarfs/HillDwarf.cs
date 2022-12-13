@@ -5,13 +5,7 @@ namespace DnD.SRD.Races.Dwarfs;
 public sealed class HillDwarf : Dwarf
 {
     public HillDwarf()
-        : base(new Ability(
-            strength: new Strength(),
-            dexterity: new Dexterity(),
-            constitution: new Constitution(),
-            intelligence: new Intelligence(),
-            wisdom: new Wisdom(1),
-            charisma: new Charisma()))
+        : base(new Ability(wisdom: new Wisdom(1)))
     {
     }
 

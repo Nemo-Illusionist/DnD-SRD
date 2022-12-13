@@ -5,13 +5,7 @@ namespace DnD.SRD.Races.Tieflings;
 public sealed class Tiefling : Race
 {
     public Tiefling()
-        : base(new Ability(
-                strength: new Strength(),
-                dexterity: new Dexterity(),
-                constitution: new Constitution(),
-                intelligence: new Intelligence(1),
-                wisdom: new Wisdom(),
-                charisma: new Charisma(2)))
+        : base(new Ability(intelligence: new Intelligence(1), charisma: new Charisma(2)))
     {
     }
 

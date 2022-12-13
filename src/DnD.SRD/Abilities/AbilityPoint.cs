@@ -1,17 +1,15 @@
-using DnD.SRD.Characters;
-
 namespace DnD.SRD.Abilities;
 
 public abstract record AbilityPoint
 {
     protected const int MaxAbilityScore = 30;
     public int Score { get; }
-    public AbilityType Type { get; }
+    public AbilityPointType Type { get; }
     public bool IsSavingThrows { get; }
     public virtual IReadOnlyCollection<SkillType> SkillTypes { get; }
     public int Modifier => Score / 2 - 5;
 
-    protected AbilityPoint(int score, AbilityType type, bool isSavingThrows)
+    protected AbilityPoint(int score, AbilityPointType type, bool isSavingThrows)
     {
         if (score is < 0 or > MaxAbilityScore)
         {
@@ -24,33 +22,18 @@ public abstract record AbilityPoint
         SkillTypes = Array.Empty<SkillType>();
     }
 
-    public int GetSavingThrowsModifier(Advancement advancement)
-    {
-        ArgumentNullException.ThrowIfNull(advancement);
-
-        return Modifier + (IsSavingThrows ? advancement.ProficiencyBonus : 0);
-    }
-
-    public int GetSkillModifier(SkillType type, Advancement advancement)
-    {
-        ArgumentNullException.ThrowIfNull(advancement);
-
-        return Modifier + GetSkillModeByType(type) switch
-        {
-            SkillMode.None => 0,
-            SkillMode.Half => advancement.ProficiencyBonus / 2,
-            SkillMode.One => advancement.ProficiencyBonus,
-            SkillMode.Two => advancement.ProficiencyBonus * 2,
-            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
-        };
-    }
-
-    protected abstract SkillMode GetSkillModeByType(SkillType type);
+    internal abstract SkillMode GetSkillModeByType(SkillType type);
 
     protected static SkillMode TryGetSkillMode(SkillType type, IReadOnlyDictionary<SkillType, SkillMode>? skillModes)
         => skillModes?.ContainsKey(type) ?? false
             ? skillModes[type]
             : SkillMode.None;
+
+    protected static int PointScore(AbilityPoint point1, AbilityPoint point2)
+    {
+        var score = point1.Score + point2.Score;
+        return score > MaxAbilityScore ? MaxAbilityScore : score;
+    }
 
     protected static SkillMode MaxSkillMode(SkillMode mode1, SkillMode mode2)
     {

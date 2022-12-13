@@ -11,12 +11,12 @@ public sealed record Strength : AbilityPoint
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, AbilityType.Strength, isSavingThrows)
+        : base(score, AbilityPointType.Strength, isSavingThrows)
     {
         Athletics = TryGetSkillMode(SkillType.Athletics, skillModes);
     }
 
-    protected override SkillMode GetSkillModeByType(SkillType type)
+    internal override SkillMode GetSkillModeByType(SkillType type)
         => type switch
         {
             SkillType.Athletics => Athletics,
@@ -28,12 +28,10 @@ public sealed record Strength : AbilityPoint
         ArgumentNullException.ThrowIfNull(point1);
         ArgumentNullException.ThrowIfNull(point2);
 
-        var score = point1.Score + point2.Score;
+        var score = PointScore(point1, point2);
         var isSavingThrows = point1.IsSavingThrows || point2.IsSavingThrows;
         var skillModes = new Dictionary<SkillType, SkillMode>
             { { SkillType.Athletics, MaxSkillMode(point1.Athletics, point2.Athletics) } };
-        return score > MaxAbilityScore
-            ? new Strength(30, isSavingThrows, skillModes)
-            : new Strength(score, isSavingThrows, skillModes);
+        return new Strength(score, isSavingThrows, skillModes);
     }
 }

@@ -14,14 +14,14 @@ public sealed record Dexterity : AbilityPoint
         int score = 0,
         bool isSavingThrows = false,
         IReadOnlyDictionary<SkillType, SkillMode>? skillModes = null)
-        : base(score, AbilityType.Strength, isSavingThrows)
+        : base(score, AbilityPointType.Strength, isSavingThrows)
     {
         Acrobatics = TryGetSkillMode(SkillType.Acrobatics, skillModes);
         SleightOfHand = TryGetSkillMode(SkillType.SleightOfHand, skillModes);
         Stealth = TryGetSkillMode(SkillType.Stealth, skillModes);
     }
 
-    protected override SkillMode GetSkillModeByType(SkillType type)
+    internal override SkillMode GetSkillModeByType(SkillType type)
         => type switch
         {
             SkillType.Acrobatics => Acrobatics,
@@ -35,7 +35,7 @@ public sealed record Dexterity : AbilityPoint
         ArgumentNullException.ThrowIfNull(point1);
         ArgumentNullException.ThrowIfNull(point2);
 
-        var score = point1.Score + point2.Score;
+        var score = PointScore(point1, point2);
         var isSavingThrows = point1.IsSavingThrows || point2.IsSavingThrows;
         var skillModes = new Dictionary<SkillType, SkillMode>
         {
@@ -43,8 +43,6 @@ public sealed record Dexterity : AbilityPoint
             { SkillType.SleightOfHand, MaxSkillMode(point1.SleightOfHand, point2.SleightOfHand) },
             { SkillType.Stealth, MaxSkillMode(point1.Stealth, point2.Stealth) }
         };
-        return score > MaxAbilityScore
-            ? new Dexterity(30, isSavingThrows, skillModes)
-            : new Dexterity(score, isSavingThrows, skillModes);
+        return new Dexterity(score, isSavingThrows, skillModes);
     }
 }

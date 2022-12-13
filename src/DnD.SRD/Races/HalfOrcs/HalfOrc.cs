@@ -7,10 +7,7 @@ public sealed class HalfOrc : Race
     public HalfOrc()
         : base(new Ability(
             strength: new Strength(2),
-            dexterity: new Dexterity(),
             constitution: new Constitution(1),
-            intelligence: new Intelligence(),
-            wisdom: new Wisdom(),
             charisma: new Charisma(
                 skillModes: new Dictionary<SkillType, SkillMode> { { SkillType.Intimidation, SkillMode.One } })))
     {

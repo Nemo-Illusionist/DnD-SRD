@@ -5,14 +5,7 @@ namespace DnD.SRD.Races.Halflings;
 public abstract class Halfling : Race
 {
     protected Halfling(Ability ability)
-        : base(ability + new Ability(
-                strength: new Strength(),
-                dexterity: new Dexterity(2),
-                constitution: new Constitution(),
-                intelligence: new Intelligence(),
-                wisdom: new Wisdom(),
-                charisma: new Charisma()),
-            25)
+        : base(ability + new Ability(dexterity: new Dexterity(2)), 25)
     {
     }
 

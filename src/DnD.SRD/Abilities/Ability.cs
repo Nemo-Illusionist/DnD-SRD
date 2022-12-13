@@ -10,45 +10,36 @@ public sealed record Ability
     public Charisma Charisma { get; }
 
     public Ability(
-        Strength strength,
-        Dexterity dexterity,
-        Constitution constitution,
-        Intelligence intelligence,
-        Wisdom wisdom,
-        Charisma charisma)
+        Strength? strength = null,
+        Dexterity? dexterity = null,
+        Constitution? constitution = null,
+        Intelligence? intelligence = null,
+        Wisdom? wisdom = null,
+        Charisma? charisma = null)
     {
-        ArgumentNullException.ThrowIfNull(strength);
-        ArgumentNullException.ThrowIfNull(dexterity);
-        ArgumentNullException.ThrowIfNull(constitution);
-        ArgumentNullException.ThrowIfNull(intelligence);
-        ArgumentNullException.ThrowIfNull(wisdom);
-        ArgumentNullException.ThrowIfNull(charisma);
-
-        Strength = strength;
-        Dexterity = dexterity;
-        Constitution = constitution;
-        Intelligence = intelligence;
-        Wisdom = wisdom;
-        Charisma = charisma;
+        Strength = strength ?? new Strength();
+        Dexterity = dexterity ?? new Dexterity();
+        Constitution = constitution ?? new Constitution();
+        Intelligence = intelligence ?? new Intelligence();
+        Wisdom = wisdom ?? new Wisdom();
+        Charisma = charisma ?? new Charisma();
     }
 
-    public AbilityPoint GetPoint(AbilityType type)
+    internal AbilityPoint GetPoint(AbilityPointType type)
     {
-        ArgumentNullException.ThrowIfNull(type);
-
         return type switch
         {
-            AbilityType.Strength => Strength,
-            AbilityType.Dexterity => Dexterity,
-            AbilityType.Constitution => Constitution,
-            AbilityType.Intelligence => Intelligence,
-            AbilityType.Wisdom => Wisdom,
-            AbilityType.Charisma => Charisma,
+            AbilityPointType.Strength => Strength,
+            AbilityPointType.Dexterity => Dexterity,
+            AbilityPointType.Constitution => Constitution,
+            AbilityPointType.Intelligence => Intelligence,
+            AbilityPointType.Wisdom => Wisdom,
+            AbilityPointType.Charisma => Charisma,
             _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
         };
     }
 
-    public AbilityPoint GetPointBySkill(SkillType type)
+    internal AbilityPoint GetPoint(SkillType type)
     {
         switch (type)
         {

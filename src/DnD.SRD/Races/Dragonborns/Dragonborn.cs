@@ -7,10 +7,6 @@ public class Dragonborn : Race
     public Dragonborn(DraconicAncestry ancestry)
         : base(new Ability(
             strength: new Strength(2),
-            dexterity: new Dexterity(),
-            constitution: new Constitution(),
-            intelligence: new Intelligence(),
-            wisdom: new Wisdom(),
             charisma: new Charisma(1)))
     {
         var resistance = ancestry switch

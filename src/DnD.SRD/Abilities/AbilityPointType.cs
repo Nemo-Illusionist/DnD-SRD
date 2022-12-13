@@ -1,6 +1,6 @@
 namespace DnD.SRD.Abilities;
 
-public enum AbilityType
+public enum AbilityPointType
 {
     Strength,
     Dexterity,
