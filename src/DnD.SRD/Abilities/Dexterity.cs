@@ -2,11 +2,6 @@ namespace DnD.SRD.Abilities;
 
 public sealed record Dexterity : AbilityPoint
 {
-    public SkillMode Acrobatics { get; }
-    public SkillMode SleightOfHand { get; }
-    public SkillMode Stealth { get; }
-    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
-
     private static readonly SkillType[] SkillTypesArray =
         { SkillType.Acrobatics, SkillType.SleightOfHand, SkillType.Stealth };
 
@@ -20,6 +15,11 @@ public sealed record Dexterity : AbilityPoint
         SleightOfHand = TryGetSkillMode(SkillType.SleightOfHand, skillModes);
         Stealth = TryGetSkillMode(SkillType.Stealth, skillModes);
     }
+
+    public SkillMode Acrobatics { get; }
+    public SkillMode SleightOfHand { get; }
+    public SkillMode Stealth { get; }
+    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
 
     internal override SkillMode GetSkillModeByType(SkillType type)
         => type switch

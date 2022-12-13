@@ -2,13 +2,6 @@ namespace DnD.SRD.Abilities;
 
 public sealed record Wisdom : AbilityPoint
 {
-    public SkillMode AnimalHandling { get; }
-    public SkillMode Insight { get; }
-    public SkillMode Medicine { get; }
-    public SkillMode Perception { get; }
-    public SkillMode Survival { get; }
-    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
-
     private static readonly SkillType[] SkillTypesArray =
         { SkillType.AnimalHandling, SkillType.Insight, SkillType.Medicine, SkillType.Perception, SkillType.Survival };
 
@@ -24,6 +17,13 @@ public sealed record Wisdom : AbilityPoint
         Perception = TryGetSkillMode(SkillType.Perception, skillModes);
         Survival = TryGetSkillMode(SkillType.Survival, skillModes);
     }
+
+    public SkillMode AnimalHandling { get; }
+    public SkillMode Insight { get; }
+    public SkillMode Medicine { get; }
+    public SkillMode Perception { get; }
+    public SkillMode Survival { get; }
+    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
 
     internal override SkillMode GetSkillModeByType(SkillType type)
         => type switch
@@ -51,6 +51,6 @@ public sealed record Wisdom : AbilityPoint
             { SkillType.Perception, MaxSkillMode(point1.Perception, point2.Perception) },
             { SkillType.Survival, MaxSkillMode(point1.Survival, point2.Survival) }
         };
-        return  new Wisdom(score, isSavingThrows, skillModes);
+        return new Wisdom(score, isSavingThrows, skillModes);
     }
 }

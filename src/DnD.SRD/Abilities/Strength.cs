@@ -2,9 +2,6 @@ namespace DnD.SRD.Abilities;
 
 public sealed record Strength : AbilityPoint
 {
-    public SkillMode Athletics { get; }
-    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
-
     private static readonly SkillType[] SkillTypesArray = { SkillType.Athletics };
 
     internal Strength(
@@ -15,6 +12,9 @@ public sealed record Strength : AbilityPoint
     {
         Athletics = TryGetSkillMode(SkillType.Athletics, skillModes);
     }
+
+    public SkillMode Athletics { get; }
+    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
 
     internal override SkillMode GetSkillModeByType(SkillType type)
         => type switch

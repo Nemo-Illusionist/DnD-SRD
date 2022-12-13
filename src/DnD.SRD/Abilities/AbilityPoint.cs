@@ -2,16 +2,9 @@ namespace DnD.SRD.Abilities;
 
 public abstract record AbilityPoint
 {
-    protected const int MaxAbilityScore = 30;
-    public int Score { get; }
-    public AbilityPointType Type { get; }
-    public bool IsSavingThrows { get; }
-    public virtual IReadOnlyCollection<SkillType> SkillTypes { get; }
-    public int Modifier => Score / 2 - 5;
-
     protected AbilityPoint(int score, AbilityPointType type, bool isSavingThrows)
     {
-        if (score is < 0 or > MaxAbilityScore)
+        if (score is < 0 or > MaxScore)
         {
             throw new ArgumentOutOfRangeException(nameof(score));
         }
@@ -21,6 +14,13 @@ public abstract record AbilityPoint
         IsSavingThrows = isSavingThrows;
         SkillTypes = Array.Empty<SkillType>();
     }
+
+    public const int MaxScore = 30;
+    public int Score { get; }
+    public AbilityPointType Type { get; }
+    public bool IsSavingThrows { get; }
+    public virtual IReadOnlyCollection<SkillType> SkillTypes { get; }
+    public int Modifier => Score / 2 - 5;
 
     internal abstract SkillMode GetSkillModeByType(SkillType type);
 
@@ -32,7 +32,7 @@ public abstract record AbilityPoint
     protected static int PointScore(AbilityPoint point1, AbilityPoint point2)
     {
         var score = point1.Score + point2.Score;
-        return score > MaxAbilityScore ? MaxAbilityScore : score;
+        return score > MaxScore ? MaxScore : score;
     }
 
     protected static SkillMode MaxSkillMode(SkillMode mode1, SkillMode mode2)

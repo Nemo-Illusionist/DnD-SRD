@@ -2,13 +2,6 @@
 
 public sealed record Ability
 {
-    public Strength Strength { get; }
-    public Dexterity Dexterity { get; }
-    public Constitution Constitution { get; }
-    public Intelligence Intelligence { get; }
-    public Wisdom Wisdom { get; }
-    public Charisma Charisma { get; }
-
     public Ability(
         Strength? strength = null,
         Dexterity? dexterity = null,
@@ -24,6 +17,13 @@ public sealed record Ability
         Wisdom = wisdom ?? new Wisdom();
         Charisma = charisma ?? new Charisma();
     }
+
+    public Strength Strength { get; }
+    public Dexterity Dexterity { get; }
+    public Constitution Constitution { get; }
+    public Intelligence Intelligence { get; }
+    public Wisdom Wisdom { get; }
+    public Charisma Charisma { get; }
 
     internal AbilityPoint GetPoint(AbilityPointType type)
     {

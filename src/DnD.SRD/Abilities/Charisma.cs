@@ -2,12 +2,6 @@ namespace DnD.SRD.Abilities;
 
 public sealed record Charisma : AbilityPoint
 {
-    public SkillMode Deception { get; }
-    public SkillMode Intimidation { get; }
-    public SkillMode Performance { get; }
-    public SkillMode Persuasion { get; }
-    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
-
     private static readonly SkillType[] SkillTypesArray =
         { SkillType.Deception, SkillType.Intimidation, SkillType.Performance, SkillType.Persuasion };
 
@@ -22,6 +16,12 @@ public sealed record Charisma : AbilityPoint
         Performance = TryGetSkillMode(SkillType.Performance, skillModes);
         Persuasion = TryGetSkillMode(SkillType.Persuasion, skillModes);
     }
+
+    public SkillMode Deception { get; }
+    public SkillMode Intimidation { get; }
+    public SkillMode Performance { get; }
+    public SkillMode Persuasion { get; }
+    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
 
     internal override SkillMode GetSkillModeByType(SkillType type)
         => type switch

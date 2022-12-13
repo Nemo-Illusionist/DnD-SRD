@@ -2,13 +2,6 @@ namespace DnD.SRD.Abilities;
 
 public sealed record Intelligence : AbilityPoint
 {
-    public SkillMode Arcana { get; }
-    public SkillMode History { get; }
-    public SkillMode Investigation { get; }
-    public SkillMode Nature { get; }
-    public SkillMode Religion { get; }
-    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
-
     private static readonly SkillType[] SkillTypesArray =
         { SkillType.Arcana, SkillType.History, SkillType.Investigation, SkillType.Nature, SkillType.Religion };
 
@@ -24,6 +17,13 @@ public sealed record Intelligence : AbilityPoint
         Nature = TryGetSkillMode(SkillType.Nature, skillModes);
         Religion = TryGetSkillMode(SkillType.Religion, skillModes);
     }
+
+    public SkillMode Arcana { get; }
+    public SkillMode History { get; }
+    public SkillMode Investigation { get; }
+    public SkillMode Nature { get; }
+    public SkillMode Religion { get; }
+    public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
 
     internal override SkillMode GetSkillModeByType(SkillType type)
         => type switch
