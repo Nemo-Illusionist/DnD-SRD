@@ -22,7 +22,7 @@ public abstract record AbilityPoint
     public virtual IReadOnlyCollection<SkillType> SkillTypes { get; }
     public int Modifier => Score / 2 - 5;
 
-    internal abstract SkillMode GetSkillModeByType(SkillType type);
+    internal abstract SkillMode GetSkillMode(SkillType type);
 
     protected static SkillMode TryGetSkillMode(SkillType type, IReadOnlyDictionary<SkillType, SkillMode>? skillModes)
         => skillModes?.ContainsKey(type) ?? false

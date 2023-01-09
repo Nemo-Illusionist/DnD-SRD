@@ -1,25 +1,34 @@
 using DnD.SRD.Abilities;
-using DnD.SRD.Classes;
+using DnD.SRD.Abilities.Behaviors;
+using DnD.SRD.Actions;
+using DnD.SRD.Actions.Behaviors;
 using DnD.SRD.Races;
 
 namespace DnD.SRD.Characters;
 
 public sealed class Character
 {
-    public HitPoints HitPoints { get; private set; }
-    public Ability CharacterAbility { get; }
-    public Race Race { get; }
-    public BaseClass Class { get; }
-    public Ability Ability => CharacterAbility + Race.Ability;
-
     public Character(
-        Ability characterAbility,
-        Race race,
-        BaseClass @class)
+        Ability ability,
+        Race race)
     {
-        CharacterAbility = characterAbility;
+        Ability = ability;
         Race = race;
-        Class = @class;
-        HitPoints = new HitPoints(Ability, Class);
+        Advancement = new Advancement();
+    }
+
+    public Advancement Advancement { get; }
+    public Ability Ability { get; }
+    public Race Race { get; }
+
+    public Ability GetCharacterAbility()
+    {
+        return Ability + Race.Ability;
+    }
+
+    public void SkillCheck(ISkillCheckAction action)
+    {
+        ISkillCheckBehavior handler = new SkillCheckBehavior(this);
+        handler = Race.SkillCheckBehaviorWrap(handler);
     }
 }

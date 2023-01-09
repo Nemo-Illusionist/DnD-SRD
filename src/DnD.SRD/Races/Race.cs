@@ -1,4 +1,6 @@
 using DnD.SRD.Abilities;
+using DnD.SRD.Abilities.Behaviors;
+using DnD.SRD.Actions.Behaviors;
 
 namespace DnD.SRD.Races;
 
@@ -11,8 +13,12 @@ public abstract class Race
     {
         Ability = ability;
         Speed = speed;
-        Resistances = Array.Empty<DamageType>();
     }
 
-    public virtual IReadOnlyCollection<DamageType> Resistances { get; }
+    public virtual IReadOnlyCollection<DamageType> Resistances => Array.Empty<DamageType>();
+
+    public virtual ISkillCheckBehavior SkillCheckBehaviorWrap(ISkillCheckBehavior behavior)
+    {
+        return behavior;
+    }
 }

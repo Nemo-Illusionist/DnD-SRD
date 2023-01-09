@@ -21,7 +21,7 @@ public sealed record Dexterity : AbilityPoint
     public SkillMode Stealth { get; }
     public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
 
-    internal override SkillMode GetSkillModeByType(SkillType type)
+    internal override SkillMode GetSkillMode(SkillType type)
         => type switch
         {
             SkillType.Acrobatics => Acrobatics,

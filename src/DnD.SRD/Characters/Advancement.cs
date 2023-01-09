@@ -6,6 +6,10 @@ public sealed record Advancement
     public int Level => CalculateLevel();
     public int ProficiencyBonus => (int)Math.Ceiling(Level / 4.0) + 1;
 
+    public Advancement() : this(0)
+    {
+    }
+
     public Advancement(int experience)
     {
         if (experience < 0)

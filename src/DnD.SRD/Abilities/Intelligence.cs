@@ -25,7 +25,7 @@ public sealed record Intelligence : AbilityPoint
     public SkillMode Religion { get; }
     public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
 
-    internal override SkillMode GetSkillModeByType(SkillType type)
+    internal override SkillMode GetSkillMode(SkillType type)
         => type switch
         {
             SkillType.Arcana => Arcana,

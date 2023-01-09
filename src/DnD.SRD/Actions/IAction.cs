@@ -1,9 +1,8 @@
-using DnD.SRD.Dices;
+using DnD.SRD.Tags;
 
 namespace DnD.SRD.Actions;
 
 public interface IAction
 {
-    public IDie20ThrowerBuilder DieThrowerBuilder { get; }
     public IReadOnlyCollection<Tage> Tags { get; }
 }

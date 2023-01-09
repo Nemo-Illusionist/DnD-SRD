@@ -9,7 +9,7 @@ public sealed record Constitution : AbilityPoint
     {
     }
 
-    internal override SkillMode GetSkillModeByType(SkillType type)
+    internal override SkillMode GetSkillMode(SkillType type)
         => throw new ArgumentOutOfRangeException(nameof(type), type, null);
 
     public static Constitution operator +(Constitution point1, Constitution point2)

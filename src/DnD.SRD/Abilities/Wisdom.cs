@@ -25,7 +25,7 @@ public sealed record Wisdom : AbilityPoint
     public SkillMode Survival { get; }
     public override IReadOnlyCollection<SkillType> SkillTypes => SkillTypesArray;
 
-    internal override SkillMode GetSkillModeByType(SkillType type)
+    internal override SkillMode GetSkillMode(SkillType type)
         => type switch
         {
             SkillType.AnimalHandling => AnimalHandling,
