@@ -1,7 +1,6 @@
 using DnD.SRD.Abilities;
+using DnD.SRD.Abilities.Actions;
 using DnD.SRD.Abilities.Behaviors;
-using DnD.SRD.Actions;
-using DnD.SRD.Actions.Behaviors;
 using DnD.SRD.Races;
 
 namespace DnD.SRD.Characters;

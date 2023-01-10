@@ -4,7 +4,7 @@ using DnD.SRD.Dices;
 
 namespace DnD.SRD.Abilities.Behaviors;
 
-public interface ISkillCheckBehavior : IActionBehavior
+public interface IAbilityCheckBehavior : IActionBehavior
 {
-    ID20ThrowerBuilder Handel(ISkillCheckAction action);
+    ID20ThrowerBuilder Handel(IAbilityCheckAction action);
 }

@@ -1,11 +1,11 @@
-using DnD.SRD.Actions;
+using DnD.SRD.Abilities.Actions;
 using DnD.SRD.Actions.Behaviors;
 using DnD.SRD.Characters;
 using DnD.SRD.Dices;
 
 namespace DnD.SRD.Abilities.Behaviors;
 
-internal class SkillCheckBehavior : BaseBehavior<ISkillCheckAction>, ISkillCheckBehavior
+internal class SkillCheckBehavior : BaseActionBehavior<ISkillCheckAction>, ISkillCheckBehavior
 {
     public SkillCheckBehavior(Character character) : base(character)
     {

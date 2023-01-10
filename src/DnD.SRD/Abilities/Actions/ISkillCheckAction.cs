@@ -1,6 +1,6 @@
-using DnD.SRD.Abilities;
+using DnD.SRD.Actions;
 
-namespace DnD.SRD.Actions;
+namespace DnD.SRD.Abilities.Actions;
 
 public interface ISkillCheckAction : IAction
 {

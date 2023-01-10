@@ -3,9 +3,9 @@ using DnD.SRD.Dices;
 
 namespace DnD.SRD.Actions.Behaviors;
 
-public abstract class BaseBehavior<TAction> where TAction : IAction
+public abstract class BaseActionBehavior<TAction> : IActionBehavior where TAction : IAction
 {
-    protected BaseBehavior(Character character)
+    protected BaseActionBehavior(Character character)
     {
         ArgumentNullException.ThrowIfNull(character);
 
