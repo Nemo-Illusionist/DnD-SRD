@@ -20,9 +20,9 @@ internal class SkillCheckBehavior : BaseActionBehavior<SkillCheckAction>, ISkill
         var score = point.Modifier + point.GetSkillMode(action.SkillType) switch
         {
             SkillMode.None => 0,
-            SkillMode.Half => Character.Advancement.ProficiencyBonus / 2,
-            SkillMode.One => Character.Advancement.ProficiencyBonus,
-            SkillMode.Two => Character.Advancement.ProficiencyBonus * 2,
+            SkillMode.Half => Character.Advancement.GetProficiencyBonus() / 2,
+            SkillMode.One => Character.Advancement.GetProficiencyBonus(),
+            SkillMode.Two => Character.Advancement.GetProficiencyBonus() * 2,
             _ => throw new ArgumentOutOfRangeException()
         };
 

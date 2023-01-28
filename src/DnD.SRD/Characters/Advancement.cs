@@ -2,10 +2,6 @@ namespace DnD.SRD.Characters;
 
 public sealed record Advancement
 {
-    public int Experience { get; }
-    public int Level => CalculateLevel();
-    public int ProficiencyBonus => (int)Math.Ceiling(Level / 4.0) + 1;
-
     public Advancement() : this(0)
     {
     }
@@ -20,14 +16,19 @@ public sealed record Advancement
         Experience = experience;
     }
 
-    public static Advancement operator +(Advancement point1, Advancement point2)
+    internal Advancement(Advancement advancement1, Advancement advancement2)
     {
-        ArgumentNullException.ThrowIfNull(point1);
-        ArgumentNullException.ThrowIfNull(point2);
+        ArgumentNullException.ThrowIfNull(advancement1);
+        ArgumentNullException.ThrowIfNull(advancement2);
 
-        var experience = point1.Experience + point2.Experience;
-        return new Advancement(experience);
+        Experience = advancement1.Experience + advancement2.Experience;
     }
+
+    public int Experience { get; }
+
+    public int GetLevel() => CalculateLevel();
+
+    public int GetProficiencyBonus() => (int)Math.Ceiling(GetLevel() / 4.0) + 1;
 
     private int CalculateLevel() => Experience switch
     {
@@ -51,6 +52,9 @@ public sealed record Advancement
         >= 900 => 3,
         >= 300 => 2,
         >= 0 => 1,
-        _ => throw new ArgumentOutOfRangeException()
+        _ => throw new ArgumentOutOfRangeException(
+            nameof(Experience),
+            Experience,
+            "The value must be greater than or equal to 0")
     };
 }

@@ -38,7 +38,7 @@ public partial class Dwarf : IActionBehaviorWrapper<ISkillCheckBehavior>
             {
                 var ability = Character.GetCharacterAbility();
                 var score = Math.Max(
-                    ability.Intelligence.Modifier + Character.Advancement.ProficiencyBonus * 2,
+                    ability.Intelligence.Modifier + Character.Advancement.GetProficiencyBonus() * 2,
                     d20ThrowerBuilder.Score);
                 d20ThrowerBuilder = new D20ThrowerBuilder(score);
             }

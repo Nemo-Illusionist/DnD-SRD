@@ -17,7 +17,7 @@ internal class SavingThrowBehavior : BaseActionBehavior<SavingThrowAction>, ISav
 
         var ability = Character.GetCharacterAbility();
         var point = ability.GetPoint(action.AbilityType);
-        var score = point.Modifier + (point.IsSavingThrows ? Character.Advancement.ProficiencyBonus : 0);
+        var score = point.Modifier + (point.IsSavingThrows ? Character.Advancement.GetProficiencyBonus() : 0);
 
         return new D20ThrowerBuilder(score);
     }

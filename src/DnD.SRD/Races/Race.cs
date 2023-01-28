@@ -1,4 +1,5 @@
 using DnD.SRD.Abilities;
+using DnD.SRD.Vision;
 
 namespace DnD.SRD.Races;
 
@@ -14,4 +15,6 @@ public abstract class Race
     }
 
     public virtual IReadOnlyCollection<DamageType> Resistances => Array.Empty<DamageType>();
+
+    public virtual IVision Vision => new DarkVision();
 }
