@@ -28,5 +28,5 @@ public enum SkillType
     Deception,
     Intimidation,
     Performance,
-    Persuasion,
+    Persuasion
 }
