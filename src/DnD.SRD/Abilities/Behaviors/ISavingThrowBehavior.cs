@@ -6,5 +6,5 @@ namespace DnD.SRD.Abilities.Behaviors;
 
 public interface ISavingThrowBehavior : IActionBehavior
 {
-    ID20ThrowerBuilder Handel(ISavingThrowAction action);
+    ID20ThrowerBuilder Handel(SavingThrowAction action);
 }

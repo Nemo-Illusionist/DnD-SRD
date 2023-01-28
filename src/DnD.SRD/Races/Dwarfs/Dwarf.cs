@@ -1,10 +1,8 @@
 using DnD.SRD.Abilities;
-using DnD.SRD.Abilities.Behaviors;
-using DnD.SRD.Races.Dwarfs.Behaviors;
 
 namespace DnD.SRD.Races.Dwarfs;
 
-public abstract class Dwarf : Race
+public abstract partial class Dwarf : Race
 {
     protected Dwarf(Ability ability)
         : base(ability + new Ability(constitution: new Constitution(2)), 25)
@@ -13,12 +11,6 @@ public abstract class Dwarf : Race
 
     public override IReadOnlyCollection<DamageType> Resistances { get; } = new[] { DamageType.Poison };
 
-    public override ISkillCheckBehavior SkillCheckBehaviorWrap(ISkillCheckBehavior behavior)
-    {
-        return new StoneworkHistorySkillCheckBehavior(base.SkillCheckBehaviorWrap(behavior));
-    }
-
-    // - Dwarven Resilience  You have advantage on saving throws against poison
     // - Darkvision: Accustomed to life underground, you have superior vision in dark and dim conditions.
     // You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light.
     // You can’t discern color in darkness, only shades of gray.

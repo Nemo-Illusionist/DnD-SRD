@@ -5,13 +5,13 @@ using DnD.SRD.Dices;
 
 namespace DnD.SRD.Abilities.Behaviors;
 
-internal class SavingThrowBehavior : BaseActionBehavior<ISavingThrowAction>, ISavingThrowBehavior
+internal class SavingThrowBehavior : BaseActionBehavior<SavingThrowAction>, ISavingThrowBehavior
 {
     public SavingThrowBehavior(Character character) : base(character)
     {
     }
 
-    public override ID20ThrowerBuilder Handel(ISavingThrowAction action)
+    public override ID20ThrowerBuilder Handel(SavingThrowAction action)
     {
         ArgumentNullException.ThrowIfNull(action);
 

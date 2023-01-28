@@ -3,7 +3,7 @@ using DnD.SRD.Dices;
 
 namespace DnD.SRD.Actions.Behaviors;
 
-public abstract class BaseActionBehavior<TAction> : IActionBehavior where TAction : IAction
+public abstract class BaseActionBehavior<TAction> : IActionBehavior where TAction : BaseAction
 {
     protected BaseActionBehavior(Character character)
     {

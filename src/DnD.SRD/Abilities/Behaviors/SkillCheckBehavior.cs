@@ -5,13 +5,13 @@ using DnD.SRD.Dices;
 
 namespace DnD.SRD.Abilities.Behaviors;
 
-internal class SkillCheckBehavior : BaseActionBehavior<ISkillCheckAction>, ISkillCheckBehavior
+internal class SkillCheckBehavior : BaseActionBehavior<SkillCheckAction>, ISkillCheckBehavior
 {
     public SkillCheckBehavior(Character character) : base(character)
     {
     }
 
-    public override ID20ThrowerBuilder Handel(ISkillCheckAction action)
+    public override ID20ThrowerBuilder Handel(SkillCheckAction action)
     {
         ArgumentNullException.ThrowIfNull(action);
 

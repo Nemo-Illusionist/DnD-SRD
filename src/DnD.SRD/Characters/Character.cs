@@ -1,6 +1,7 @@
 using DnD.SRD.Abilities;
 using DnD.SRD.Abilities.Actions;
 using DnD.SRD.Abilities.Behaviors;
+using DnD.SRD.Actions.Behaviors;
 using DnD.SRD.Races;
 
 namespace DnD.SRD.Characters;
@@ -25,9 +26,12 @@ public sealed class Character
         return Ability + Race.Ability;
     }
 
-    public void SkillCheck(ISkillCheckAction action)
+    public void SkillCheck(SkillCheckAction action)
     {
-        ISkillCheckBehavior handler = new SkillCheckBehavior(this);
-        handler = Race.SkillCheckBehaviorWrap(handler);
+        ISkillCheckBehavior behavior = new SkillCheckBehavior(this);
+        if (Race is IActionBehaviorWrapper<ISkillCheckBehavior> wrapper)
+        {
+            behavior = wrapper.Wrap(behavior);
+        }
     }
 }

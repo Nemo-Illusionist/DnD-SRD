@@ -6,5 +6,5 @@ namespace DnD.SRD.Abilities.Behaviors;
 
 public interface ISkillCheckBehavior : IActionBehavior
 {
-    ID20ThrowerBuilder Handel(ISkillCheckAction action);
+    ID20ThrowerBuilder Handel(SkillCheckAction action);
 }
