@@ -17,12 +17,13 @@ internal class SkillCheckBehavior : BaseActionBehavior<SkillCheckAction>, ISkill
 
         var ability = Character.GetCharacterAbility();
         var point = ability.GetPoint(action.SkillType);
+        var bonus = Character.Advancement.GetProficiencyBonus();
         var score = point.Modifier + point.GetSkillMode(action.SkillType) switch
         {
             SkillMode.None => 0,
-            SkillMode.Half => Character.Advancement.GetProficiencyBonus() / 2,
-            SkillMode.One => Character.Advancement.GetProficiencyBonus(),
-            SkillMode.Two => Character.Advancement.GetProficiencyBonus() * 2,
+            SkillMode.Half => bonus / 2,
+            SkillMode.One => bonus,
+            SkillMode.Two => bonus * 2,
             _ => throw new ArgumentOutOfRangeException()
         };
 

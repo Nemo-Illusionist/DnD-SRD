@@ -1,4 +1,5 @@
 using DnD.SRD.Abilities;
+using DnD.SRD.Vision;
 
 namespace DnD.SRD.Races.Gnomes;
 
@@ -7,10 +8,10 @@ public abstract class Gnome : Race
     protected Gnome(Ability ability)
         : base(ability + new Ability(intelligence: new Intelligence(2)), 25)
     {
+        Vision = new DarkVision();
     }
 
-    // - Darkvision: Accustomed to life underground, you have superior vision in dark and dim conditions.
-    // You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light.
-    // You can’t discern color in darkness, only shades of gray.
+    public override IVision Vision { get; }
+
     // - Gnome Cunning: You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.
 }

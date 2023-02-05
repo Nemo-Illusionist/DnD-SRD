@@ -47,12 +47,12 @@ public partial class Tage
 
     public static class LanguageScript
     {
-        public static Tage Common { get; } = new("script_common");
-        public static Tage Dwarvish { get; } = new("script_dwarvish");
-        public static Tage Elvish { get; } = new("script_elvish");
-        public static Tage Infernal { get; } = new("script_infernal");
-        public static Tage Celestial { get; } = new("script_celestial");
-        public static Tage Draconic { get; } = new("script_draconic");
+        public static Tage Common { get; } = new("language_script_common");
+        public static Tage Dwarvish { get; } = new("language_script_dwarvish");
+        public static Tage Elvish { get; } = new("language_script_elvish");
+        public static Tage Infernal { get; } = new("language_script_infernal");
+        public static Tage Celestial { get; } = new("language_script_celestial");
+        public static Tage Draconic { get; } = new("language_script_draconic");
 
         public static Tage? ByType(LanguageScriptType type) => type switch
         {
