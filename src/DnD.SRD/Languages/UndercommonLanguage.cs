@@ -3,7 +3,7 @@ namespace DnD.SRD.Languages;
 public sealed class UndercommonLanguage : Language
 {
     public UndercommonLanguage()
-        : base(LanguageType.Undercommon, LanguageScriptType.Elvish, isExotic: true)
+        : base(LanguageTage.Undercommon, LanguageScriptTage.Elvish, isExotic: true)
     {
     }
 }

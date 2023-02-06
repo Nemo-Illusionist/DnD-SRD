@@ -3,7 +3,7 @@ namespace DnD.SRD.Languages;
 public sealed class OrcLanguage : Language
 {
     public OrcLanguage()
-        : base(LanguageType.Orc, LanguageScriptType.Dwarvish, isExotic: false)
+        : base(LanguageTage.Orc, LanguageScriptTage.Dwarvish, isExotic: false)
     {
     }
 }

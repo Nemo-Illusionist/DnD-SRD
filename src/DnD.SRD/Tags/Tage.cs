@@ -1,10 +1,10 @@
 namespace DnD.SRD.Tags;
 
-public sealed partial class Tage : IEquatable<Tage>
+public partial class Tage : IEquatable<Tage>
 {
     private readonly string _id;
 
-    private Tage(string id)
+    protected Tage(string id)
     {
         _id = id;
     }
