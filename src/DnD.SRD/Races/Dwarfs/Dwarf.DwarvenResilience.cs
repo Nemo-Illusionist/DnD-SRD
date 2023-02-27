@@ -3,7 +3,6 @@ using DnD.SRD.Abilities.Behaviors;
 using DnD.SRD.Actions.Behaviors;
 using DnD.SRD.Characters;
 using DnD.SRD.Dices;
-using DnD.SRD.Tags;
 
 namespace DnD.SRD.Races.Dwarfs;
 
@@ -32,7 +31,7 @@ public partial class Dwarf : IActionBehaviorWrapper<ISavingThrowBehavior>
             ArgumentNullException.ThrowIfNull(action);
 
             var d20ThrowerBuilder = _savingThrowBehavior.Handel(action);
-            return action.Tags.Contains(Tage.Damage.Poison)
+            return action.Tags.Contains(DamageType.Poison)
                 ? new D20ThrowerModeWrapperBuilder(ThrowMode.Advantage, d20ThrowerBuilder)
                 : d20ThrowerBuilder;
         }

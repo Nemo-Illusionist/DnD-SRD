@@ -1,6 +1,6 @@
 namespace DnD.SRD.Tags;
 
-public partial class Tage : IEquatable<Tage>
+public class Tage : IEquatable<Tage>
 {
     private readonly string _id;
 
@@ -18,14 +18,14 @@ public partial class Tage : IEquatable<Tage>
     {
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
-        return obj.GetType() == GetType() && Equals((Tage?)obj);
+        return obj.GetType() == GetType() && _id == ((Tage)obj)._id;
     }
 
     public bool Equals(Tage? other)
     {
         if (ReferenceEquals(null, other)) return false;
         if (ReferenceEquals(this, other)) return true;
-        return _id == other._id;
+        return other.GetType() == GetType() && _id == other._id;
     }
 
     public static bool operator !=(Tage? left, Tage? right)

@@ -34,7 +34,7 @@ public partial class Dwarf : IActionBehaviorWrapper<ISkillCheckBehavior>
 
             var d20ThrowerBuilder = _skillCheckBehavior.Handel(action);
 
-            if (action.SkillType == SkillType.History && action.Tags.Contains(Tage.Environment.Stonework))
+            if (action.SkillType == SkillType.History && action.Tags.Contains(EnvironmentTage.Stonework))
             {
                 var ability = Character.GetCharacterAbility();
                 var score = Math.Max(
