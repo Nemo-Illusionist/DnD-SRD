@@ -10,8 +10,8 @@ public class Dagger : Weapon
             DiceType.D4,
             DamageType.Piercing,
             weight: 1,
-            WeaponType.Simple,
-            WeaponSubType.Dagger,
+            type: WeaponType.Simple,
+            subType: WeaponSubType.Dagger,
             range: new WeaponRange(20, 60),
             property: new[] { WeaponProperty.Finesse, WeaponProperty.Light, WeaponProperty.Thrown })
     {

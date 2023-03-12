@@ -12,9 +12,8 @@ public class Sling : Weapon
             weight: 0,
             WeaponType.Simple,
             WeaponSubType.Sling,
-            isRanged: true,
             range: new WeaponRange(30, 120),
-            property: new[] { WeaponProperty.Ammunition })
+            property: new[] { WeaponProperty.Ammunition, WeaponProperty.Range })
     {
     }
 }

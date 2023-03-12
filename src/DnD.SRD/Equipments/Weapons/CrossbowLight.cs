@@ -12,9 +12,14 @@ public class CrossbowLight : Weapon
             weight: 5,
             WeaponType.Simple,
             WeaponSubType.CrossbowLight,
-            isRanged: true,
             range: new WeaponRange(80, 320),
-            property: new[] { WeaponProperty.Ammunition, WeaponProperty.Loading, WeaponProperty.TwoHanded })
+            property: new[]
+            {
+                WeaponProperty.Ammunition,
+                WeaponProperty.Loading,
+                WeaponProperty.TwoHanded,
+                WeaponProperty.Range
+            })
     {
     }
 }

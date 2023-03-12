@@ -12,9 +12,8 @@ public class Dart : Weapon
             weight: 0.25,
             WeaponType.Simple,
             WeaponSubType.Dart,
-            isRanged: true,
             range: new WeaponRange(20, 60),
-            property: new[] { WeaponProperty.Finesse, WeaponProperty.Thrown })
+            property: new[] { WeaponProperty.Finesse, WeaponProperty.Thrown, WeaponProperty.Range })
     {
     }
 }

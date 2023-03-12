@@ -12,9 +12,8 @@ public class Shortbow : Weapon
             weight: 2,
             WeaponType.Simple,
             WeaponSubType.Shortbow,
-            isRanged: true,
             range: new WeaponRange(80, 320),
-            property: new[] { WeaponProperty.Ammunition, WeaponProperty.TwoHanded })
+            property: new[] { WeaponProperty.Ammunition, WeaponProperty.TwoHanded, WeaponProperty.Range })
     {
     }
 }
