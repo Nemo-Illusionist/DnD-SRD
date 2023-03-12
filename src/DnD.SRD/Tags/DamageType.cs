@@ -6,6 +6,7 @@ public class DamageType : Tage
     {
     }
 
+    public static DamageType None { get; } = new("none");
     public static DamageType Acid { get; } = new("acid");
     public static DamageType Lightning { get; } = new("lightning");
     public static DamageType Fire { get; } = new("fire");

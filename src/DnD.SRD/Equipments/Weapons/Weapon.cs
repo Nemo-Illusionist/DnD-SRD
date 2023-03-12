@@ -7,7 +7,7 @@ public abstract class Weapon
 {
     protected Weapon(
         DiceType dice,
-        DamageType damage,
+        DamageType? damageType,
         double weight,
         WeaponType type,
         WeaponSubType subType,
@@ -15,25 +15,52 @@ public abstract class Weapon
         WeaponRange? range = null,
         IReadOnlyCollection<WeaponProperty>? property = null,
         DiceType? versatileDice = null)
+        : this(damageType, weight, type, subType, range, property)
     {
-        if (weight < 0) throw new ArgumentOutOfRangeException(nameof(weight));
         if (multipleDice <= 0) throw new ArgumentOutOfRangeException(nameof(multipleDice));
 
         Dice = dice;
-        Damage = damage;
-        Weight = weight;
-        Type = type;
-        SubType = subType;
         MultipleDice = multipleDice;
-        Range = range;
-        Property = property ?? Array.Empty<WeaponProperty>();
         VersatileDice = versatileDice;
     }
 
+    protected Weapon(
+        int damage,
+        DamageType? damageType,
+        double weight,
+        WeaponType type,
+        WeaponSubType subType,
+        WeaponRange? range = null,
+        IReadOnlyCollection<WeaponProperty>? property = null)
+        : this(damageType, weight, type, subType, range, property)
+    {
+        if (damage < 0) throw new ArgumentOutOfRangeException(nameof(damage));
 
+        Damage = damage;
+    }
+
+    private Weapon(
+        DamageType? damageType,
+        double weight,
+        WeaponType type,
+        WeaponSubType subType,
+        WeaponRange? range,
+        IReadOnlyCollection<WeaponProperty>? property)
+    {
+        if (weight < 0) throw new ArgumentOutOfRangeException(nameof(weight));
+
+        DamageType = damageType;
+        Weight = weight;
+        Type = type;
+        SubType = subType;
+        Range = range;
+        Property = property ?? Array.Empty<WeaponProperty>();
+    }
+
+    public int? Damage { get; }
     public int MultipleDice { get; }
-    public DiceType Dice { get; }
-    public DamageType Damage { get; }
+    public DiceType? Dice { get; }
+    public DamageType? DamageType { get; }
     public double Weight { get; }
     public WeaponType Type { get; }
     public WeaponSubType SubType { get; }
