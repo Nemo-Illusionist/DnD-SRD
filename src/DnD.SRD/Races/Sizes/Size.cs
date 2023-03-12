@@ -16,10 +16,12 @@ public record Size
 
     public SizeType Type => Value switch
     {
-        //todo: add
+        >= 20 => SizeType.Gargantuan,
+        >= 15 => SizeType.Huge,
+        >= 10 => SizeType.Large,
         >= 4 => SizeType.Medium,
         >= 2.5 => SizeType.Small,
-        >= 0 => SizeType.Tiny,
+        > 0 => SizeType.Tiny,
         _ => throw new ArgumentOutOfRangeException()
     };
 }

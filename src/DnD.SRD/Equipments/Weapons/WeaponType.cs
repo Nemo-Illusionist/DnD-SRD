@@ -1,10 +1,8 @@
 namespace DnD.SRD.Equipments.Weapons;
 
-public enum Weapon
+public enum WeaponType
 {
-    None,
     Simple,
-    SimpleRanged,
     Martial,
-    MartialRanged
+    Improvised
 }

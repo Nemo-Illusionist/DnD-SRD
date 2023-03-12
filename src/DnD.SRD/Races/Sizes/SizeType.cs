@@ -6,5 +6,6 @@ public enum SizeType
     Small,
     Medium,
     Large,
-    Huge
+    Huge,
+    Gargantuan
 }

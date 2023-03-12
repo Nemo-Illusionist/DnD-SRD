@@ -5,9 +5,13 @@ namespace DnD.SRD.Abilities.Actions;
 
 public record SavingThrowAction : BaseAction
 {
-    public SavingThrowAction(IReadOnlyCollection<Tage> tags) : base(tags)
+    public SavingThrowAction(
+        AbilityPointType abilityType,
+        IReadOnlyCollection<Tage> tags)
+        : base(tags)
     {
+        AbilityType = abilityType;
     }
 
-    public AbilityPointType AbilityType { get; set; }
+    public AbilityPointType AbilityType { get; }
 }
